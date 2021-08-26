@@ -1,10 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React,{Component} from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './components/MainComponents';
 function App() {
   return (
-    <div className="App">
-      venue
+    <div>
+      <BrowserRouter>
+        <div className="App">
+          <Main />
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
