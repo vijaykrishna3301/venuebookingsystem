@@ -1,9 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap');
+*{
+    font-family:'Poppins', sans-serif ;
+}
 .row-header{
     margin:0px auto;
     padding:0px auto;
 }
-
 .row-content {
     margin:0px auto;
     padding: 50px 0px 50px 0px;
@@ -12,7 +14,7 @@
 }
 
 .footer{
-    background-color: #D1C4E9;
+    background-color: #1c0839;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
@@ -28,20 +30,117 @@ address{
     margin:0px;
     color:#0f0f0f;
 }
-
-.navbar-dark {
-    background-color: #ec2c2c;
+body{
+    background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),url(./components/navimg.jpeg);
+}
+.whitebg{
+    background:#fff;
+}
+.navbar{
     
+    filter: brightness(120%);
+    z-index: 3;  
+}
+.navbar-fixed-top.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+  }
+.navbar-brand {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    margin-right: 1rem;
+    font-size: 2rem;
+    font-family: 'Cookie', cursive;
 }
 .navbar-dark .navbar-nav .nav-link {
-    color: rgb(5, 5, 5);
+    
 }
 .color{
-    color:rgb(85, 41, 155) !important;
-    font-size: 1.75rem !important;
-    font-weight: 600;
-    font-family: Georgia, serif;
+    color:#ffffff !important;
+    font-weight: 400;
+}
+.color img{
+    width: 50px;
+    height: 50x;
 }
 .size{
     height: 35em;
 }
+.nav-link{
+    font-size: 1.25rem;   
+}
+.nav-item :hover{
+    /*background: #e6b800;*/
+}
+.nav-item .active{
+   color:rgb(255, 255, 255) !important;
+}
+.navbar button{
+    /*outline: none;
+    border: none;
+    background: #e6b800;
+    color: white;
+    text-shadow: black;*/
+    
+}
+.sampleimage{
+    margin: 0;
+    padding: 0;
+    background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1)
+    ),url(./components/mainimage.jpeg);
+    -webkit-backgrround-size:cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    font-family: poppins;
+    height: 100vh;
+    
+}
+.wrapper{
+    z-Index: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding: 30pt;
+    filter: brightness(100%);
+    transform: translate(-50%,-50%);
+    color: white;
+}
+.wrapper h1{
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    
+}
+.wrapper p{
+    font-size: 18px;
+    line-height: 25px;
+}
+.wrapper button{
+    background: crimson;
+}
+@keyframes animate {
+    0%{
+        content: 'Venue';
+    }
+    33%{
+        content: 'Vendor';
+    }
+    67%{
+        content: 'Store';
+    }
+    100%{
+        content: 'Venue';
+    }
+}
+.wrapper span::before{
+    content: '';
+    animation: animate infinite 6s !important;
+
+}
+
