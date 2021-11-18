@@ -56,7 +56,7 @@ export const stores=
             image: 'https://i.pinimg.com/originals/c1/85/27/c1852757c76b515182c184bb3754c7ef.jpg',
             address:'1/52/1',
             area:'Tirumangalam',
-            city: 'Madurai',
+            city: 'erode',
             state:'Tamil Nadu',
             landmark:'near',
             description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',

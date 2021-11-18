@@ -14,7 +14,7 @@
 }
 
 .footer{
-    background-color: #1c0839;
+    background-color: #440105;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
@@ -87,6 +87,24 @@ body{
     text-shadow: black;*/
     
 }
+.PrivatePickersFadeTransitionGroup-root.MuiCalendarPicker-viewTransitionContainer.css-1wvgxus-MuiCalendarPicker-viewTransitionContainer{
+    pointer-events:none;
+}
+.css-4l7j15{
+    background-color: #ffffff94 !important;
+}
+.css-16po2ru-MuiButtonBase-root-MuiPickersDay-root { 
+    color:#fff !important;
+    background-color: #28bb16 !important;
+}
+.css-1pjelpz-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+    color:#fff !important;
+    background-color: #28bb16 !important;
+}
+.css-es9is1-MuiButtonBase-root-MuiPickersDay-root{
+    color:#fff !important;
+    background-color: #28bb16 !important;
+}
 .sampleimage{
     margin: 0;
     padding: 0;
@@ -129,10 +147,10 @@ body{
         content: 'Venue';
     }
     33%{
-        content: 'Vendor';
+        content: 'Venue';
     }
     67%{
-        content: 'Store';
+        content: 'Venue';
     }
     100%{
         content: 'Venue';
@@ -143,4 +161,11 @@ body{
     animation: animate infinite 6s !important;
 
 }
-
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+  }
+.MuiRating-iconEmpty {
+color:#ffff0085 !important;
+}

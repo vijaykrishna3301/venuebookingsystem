@@ -63,8 +63,7 @@ export default class VendorsList extends Component{
         <Header navbg={"linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6))"} />
         <div className="container" style={{marginTop:'5rem'}}>
             <div className="row">
-              <div className="col-md-3"><Accordian/><Accordian/><Accordian/></div>
-              <div className="col-md-9">
+              <div className="col-md-10">
                 <div className="row ">{menu} </div>
               </div>
             </div>

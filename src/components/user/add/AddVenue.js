@@ -1,16 +1,31 @@
 import React, { Component } from "react";
-import { Card, Form,Button,Row,Col} from 'react-bootstrap';
+import { Card, Form,Button,Row,Col,Modal} from 'react-bootstrap';
 import axios from 'axios';
+import { connect } from "react-redux";
+import {Navbar, NavbarBrand,Jumbotron,Nav,NavbarToggler,Collapse,NavItem,
+    ModalBody,ModalHeader,FormGroup,Label,Input,NavbarText} from "reactstrap";
+import ImageUpload from "./ImageUpload";
 
-export default class AddVenue extends Component{
+class AddVenue extends Component{
     constructor(props){
         super(props);
         this.state= this.initialState;
         this.addVenue = this.addVenue.bind(this);
         this.venueChange = this.venueChange.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
     initialState={
-        name:'',imageUrl:'',street:'',location:'',city:'',state:'',landmark:'',minCapacity:'',maxCapacity:'',occation:'',discription:''
+        name:'',imageUrl:'',street:'',location:'',city:'',state:'',landmark:'',minCapacity:'',maxCapacity:'',occation:'',discription:'',pincode:0,isModalOpen:false
+    }
+    toggleModal = ()=>{
+        this.setState({
+            isModalOpen:!this.state.isModalOpen
+        })
+        console.log(this.state.imageUrl,"vk");
+      }
+    bookingclick = ()=>{
+    this.toggleModal();
+    
     }
     resetForm = () =>{
         this.setState(()=>this.initialState);
@@ -30,7 +45,9 @@ export default class AddVenue extends Component{
             capacitymax:this.state.maxCapacity,
             occations:this.state.occation,
             rating:'0',
-            description:this.state.discription
+            description:this.state.discription,
+            pincode:this.state.pincode,
+            owneremail:this.props.auth.userEmail
         };
         console.log(venue);
         const url = 'http://localhost:8080/venue/addvenue';
@@ -50,11 +67,27 @@ export default class AddVenue extends Component{
         });
         
     }
+    handleChangeValue = (val) => {this.setState({imageUrl: val});console.log(val,"vk"); }
 
     render(){
-        const {name,imageUrl,street,location,city,state,landmark,minCapacity,maxCapacity,occation,discription} = this.state;
+        const {name,imageUrl,street,location,city,state,landmark,minCapacity,maxCapacity,occation,discription,pincode} = this.state;
         return(
             <div className="container">
+                <Modal show={this.state.isModalOpen} onHide={this.toggleModal} dialogClassName="modal-80w"
+                    aria-labelledby="example-custom-modal-styling-title"
+                >
+                    <Modal.Header closeButton>
+                    <Modal.Title>Modal</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body><ImageUpload closeModel={this.toggleModal} onChangeValue={this.handleChangeValue}/></Modal.Body>
+                </Modal>
+                {/* <Modal fullscreen={true} isOpen={this.state.isModalOpen} toggle={this.toggleModal} >
+                    <ModalHeader toggle={this.toggleModal}>Book Venue</ModalHeader>
+                    <ModalBody>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+                    </ModalBody>
+                </Modal> */}
                 <Card className="border ">
                     <Card.Header>Add Venue</Card.Header>
                     <Form onReset={this.resetForm} onSubmit={this.addVenue}  id="addVenueForm">
@@ -70,13 +103,8 @@ export default class AddVenue extends Component{
                                         />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="venueImageUrl">
-                                <Form.Label>Image Url</Form.Label>
-                                <Form.Control required autoComplete="off"
-                                    type="text" name="imageUrl"
-                                    value={imageUrl}
-                                    onChange={this.venueChange}
-                                    placeholder="Enter URL"
-                                    />
+                                <Form.Label>Image Url</Form.Label><br/>
+                                <Button variant="danger" onClick={this.toggleModal}>Upload</Button>
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
@@ -105,6 +133,15 @@ export default class AddVenue extends Component{
                                     value={city}
                                     onChange={this.venueChange}
                                     placeholder="Enter City"
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="venuePincode">
+                                <Form.Label>Pincode</Form.Label>
+                                <Form.Control required autoComplete="off"
+                                    type="number" name="pincode"
+                                    value={pincode}
+                                    onChange={this.venueChange}
+                                    placeholder="Enter Pincode"
                                     />
                                 </Form.Group>
                             </Row>
@@ -161,11 +198,11 @@ export default class AddVenue extends Component{
                                 <Form.Group as={Col} controlId="venueDiscription">
                                 <Form.Label>Short Description</Form.Label>
                                 <Form.Control required autoComplete="off"
-                                    type="text" name="discription"
+                                    as="textarea" name="discription"
+                                    rows={3} 
                                     value={discription}
-                                    onChange={this.venueChange}
-                                    placeholder="Enter Description"
-                                    />
+                                    onChange={this.venueChange} 
+                                    placeholder="Enter Description"/>
                                 </Form.Group>                
                             </Row>
                         </Card.Body>
@@ -184,3 +221,10 @@ export default class AddVenue extends Component{
     }
     
 }
+const mapStateToProps= state =>{
+    return {
+        auth:state.auth
+    }
+  };
+
+export default  connect(mapStateToProps)(AddVenue);

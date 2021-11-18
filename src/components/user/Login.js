@@ -27,11 +27,11 @@ class Login  extends Component {
             [event.target.name]:event.target.value
         });
       };
-      resetLoginForm=()=>{
-          this.setState(()=>this.initialState);
-      }
-      validateUser = () => {
-        this.props.authenticateUser(this.state.email, this.state.password);
+    resetLoginForm=()=>{
+        this.setState(()=>this.initialState);
+    }
+    validateUser = () => {
+        /* this.props.authenticateUser(this.state.email, this.state.password);
         setTimeout(()=>{
             if(this.props.auth.isLoggedIn){
                 return this.props.history.push("/")
@@ -40,18 +40,27 @@ class Login  extends Component {
                 this.resetLoginForm();
                 this.setState({"error":"Invalid email And Password"})
             }
-        },500);
-          
-      };
-  render() {
+        },2000); */
+        this.props.authenticateUser(this.state.email, this.state.password)
+            .then((response) => {
+                console.log(response.data);
+                return this.props.history.push("/home");
+            })
+            .catch((error) => {
+                console.log(error.message);
+                this.resetLoginForm();
+                this.setState({"error":"Invalid email And Password"})
+            });
+    };
+    render() {
       const {email,password,error} =this.state;
     return (
         <div style={{marginTop:'5rem'}}>
             <Header navbg={"linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6))"} />
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center" >
                 <Col md={5}>
                     {error && <Alert variant="danger">{error}</Alert>}
-                    <Card>
+                    <Card >
                             <Card.Header>
                                 <span className="fa fa-sign-in "> </span> Login
                             </Card.Header>
